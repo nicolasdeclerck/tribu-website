@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La tribu d'Oya - Les projets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+    <main class="flex flex-col h-screen">
+        <header></header>
+        <section class="flex-grow flex flex-col gap-16 justify-center items-center w-full max-w-[1300px] mx-auto">
+            <h1 class="center text-5xl">Les projets</h1>
+            <div class="grid grid-cols-3 gap-16 w-full">
+                <div class="bg-white bg-[url('/assets/img/trafiquee.jpg')] bg-cover bg-center rounded-md">
+                    <div class="p-8 bg-white bg-opacity-70 text-black space-y-4 rounded-md text-right h-full flex flex-col justify-end items-end">
+                        <h2 class="text-3xl font-semibold">Trafiquée</h3>
+                        <h3>Pièce de théâtre</h3>
+                        <button class="bg-black text-white p-2 rounded-md w-fit">
+                            <a href="/projets/detail/?name=trafiquee">En savoir plus</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white bg-[url('/assets/img/olympe.jpeg')] bg-cover bg-center rounded-md">
+                    <div class="p-8 bg-white bg-opacity-70 text-black space-y-4 rounded-md text-right h-full flex flex-col justify-end items-end">
+                        <h2 class="text-3xl font-semibold">Olympe</h3>
+                        <h3>Pièce de théâtre</h3>
+                        <button class="bg-black text-white p-2 rounded-md w-fit">
+                            <a href="/projets/detail/?name=olympe">En savoir plus</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white bg-[url('/assets/img/alors-les-coeurs-se-tissent.jpg')] bg-cover bg-center rounded-md">
+                    <div class="p-8 bg-white bg-opacity-70 text-black space-y-4 rounded-md text-right h-full flex flex-col justify-end items-end">
+                        <h2 class="text-3xl font-semibold">Alors les coeurs se tissent</h3>
+                        <h3>Pièce de théâtre</h3>
+                        <button class="bg-slate-400 text-white p-2 rounded-md w-fit">En cours de création</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+    </main>
+    <script>
+        // insert header.html into header tags
+        fetch('/partials/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('header').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
