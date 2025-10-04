@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La tribu d'Oya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+    <main class="flex flex-col h-screen">
+        <section class="flex-grow flex flex-col overflow-hidden relative">
+            <header class="hidden md:block"></header>
+            <section data-projet="background-image" class="min-w-full h-full p-24 flex gap-8 bg-[url('assets/img/trafiquee.jpg')] bg-cover bg-center relative">
+                <div class="bg-white text-black p-8 bg-opacity-90 rounded-md w-96 space-y-5 h-fit">
+                    <h1 class="text-5xl" data-projet="title"></h1>
+                    <h2 data-projet="subtitle"></h2>
+                    <p data-projet="credits">
+                    </p>
+                    <p class="text-lg" data-projet="description">
+                    </p>
+                </div>
+                <div class="border-4 border-white flex-grow rounded-md bg-black" data-projet="youtube_link">
+                    <iframe class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script>
+        // insert header.html into header tags
+        fetch('/partials/header.html')
+            .then(response => response.text())
+            .then(headerData => {
+                document.querySelector('header').innerHTML = headerData;
+            });
+
+        // get the name of the project from the url
+        const urlParams = new URLSearchParams(window.location.search);
+        const projetName = urlParams.get('name') || 'trafiquee';
+
+        // fetch the projets data for related project from projets/projets_data.json (title, subtitle, credit, description, youtube link)
+        fetch('/projets/projets_data.json')
+            .then(response => response.json())
+            .then(projetsData => {
+                // get the first project data
+                const projet = projetsData.find(p => p.id === projetName);
+                // insert the data into the html
+                document.querySelector('[data-projet="title"]').innerHTML = projet.title;
+                document.querySelector('[data-projet="background-image"]').style.backgroundImage = `url(${projet.background_image})`;
+                document.querySelector('[data-projet="subtitle"]').innerHTML = projet.subtitle;
+                document.querySelector('[data-projet="credits"]').innerHTML = projet.credit;
+                document.querySelector('[data-projet="description"]').innerHTML = projet.description;
+                document.querySelector('[data-projet="youtube_link"] iframe').src = projet.youtube_link;
+            });
+
+    </script>
+    
+</body>
+</html>
