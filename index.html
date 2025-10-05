@@ -16,9 +16,9 @@
         .carousel { animation: slide 20s infinite; }
     </style>
 </head>
-<body class="bg-black text-white">
+<body class="bg-black text-white opacity-0 transition-opacity duration-1000">
     <main class="flex flex-col h-screen">
-        <header></header>
+        <header class="min-h-[80px]"></header>
         <section class="flex-grow flex flex-col overflow-hidden relative">
             <div class="flex carousel flex-grow">
                 <div class="min-w-full h-full bg-[url('assets/img/trafiquee.jpg')] bg-cover bg-right relative p-4">
@@ -76,9 +76,8 @@
             </div>
         </section>
     </main>
-    <footer></footer>
-    <script src="/assets/js/header.js"></script>
-    <script src="/assets/js/footer.js"></script>
+    <footer class="min-h-[200px]"></footer>
+    <script src="/assets/js/partials-loader.js"></script>
     
 </body>
 </html>
