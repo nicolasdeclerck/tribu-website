@@ -18,8 +18,8 @@
 </head>
 <body class="bg-black text-white">
     <main class="flex flex-col h-screen">
+        <header></header>
         <section class="flex-grow flex flex-col overflow-hidden relative">
-            <header></header>
             <div class="flex carousel flex-grow">
                 <div class="min-w-full h-full bg-[url('assets/img/trafiquee.jpg')] bg-cover bg-right relative p-4">
                     <div class="my-16 md:absolute md:right-28 md:top-28 md:w-96 gap-4 bg-white bg-opacity-80 text-right p-4 rounded-md text-black flex flex-col items-end">
@@ -76,14 +76,7 @@
             </div>
         </section>
     </main>
-    <script>
-        // insert header.html into header tags
-        fetch('partials/header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('header').innerHTML = data;
-            });
-    </script>
+    <script src="/assets/js/header.js"></script>
     
 </body>
 </html>

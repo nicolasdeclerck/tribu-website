@@ -29,14 +29,8 @@
             </section>
         </section>
     </main>
+    <script src="/assets/js/header.js"></script>
     <script>
-        // insert header.html into header tags
-        fetch('/partials/header.html')
-            .then(response => response.text())
-            .then(headerData => {
-                document.querySelector('header').innerHTML = headerData;
-            });
-
         // get the name of the project from the url
         const urlParams = new URLSearchParams(window.location.search);
         const projetName = urlParams.get('name') || 'trafiquee';
