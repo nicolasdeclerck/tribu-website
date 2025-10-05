@@ -2,7 +2,7 @@
     {
         "id": "trafiquee",
         "title": "Trafiquée",
-        "background_image": "/assets/img/trafiquee.jpg",
+        "background_image": "/assets/img/trafiquee.png",
         "subtitle": "Pièce de théâtre",
         "credit": "Autrice : Emma Haché<br />Avec : Stéphanie Horel et Aude Sauvée",
         "description": "Trafiquée est un texte puissant sur les violences faites aux femmes à travers le prisme de la prostitution. Le texte raconte le parcours d’une femme comme tant d’autres, enlevée, vendue, prostituée, trafiquée. Il y est aussi question d’espoir et de résilience.",
@@ -11,7 +11,7 @@
     {
         "id": "olympe",
         "title": "Olympe",
-        "background_image": "/assets/img/olympe.jpeg",
+        "background_image": "/assets/img/olympe.png",
         "subtitle": "Pièce de théâtre",
         "credit": "Autrice : Emma Haché<br />Avec : Stéphanie Horel et Aude Sauvée",
         "description": "<p class='mb-4'>A partir du texte: “La déclaration des droits de la femme et de la citoyenne”, 1791</p><p>Olympe de Gouges défendait le fait que “si la femme a le droit de monter à l’échafaud, elle doit aussi avoir celui de monter à la tribune”. Elle sera guillotinée pour la défense de ses idées.</p>",
