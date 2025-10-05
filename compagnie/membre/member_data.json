@@ -1,0 +1,30 @@
+[
+    {
+        "name": "stephanie",
+        "dispName": "Stéphanie Horel",
+        "img": "/assets/img/equipe/stephanie.png",
+        "description": "<p>Née en 1973, Stéphanie Horel est metteuse en scène et comédienne.</p><p>Comédienne depuis 20 ans, Stéphanie a travaillé sous la direction de Violaine Debarge, Daniela Piemontesi, Simon Capelle et Antoine Lemaire.</p><p>Son répertoire va du théâtre classique au répertoire contemporain ; de <span class='italic'>Lorenzaccio</span> à <span class='italic'>Surtout ne regardez pas mon jardin</span> de Stéphane Guérin.</p><p>Elle anime également des ateliers de théâtre. D’abord assistante mise en scène, elle met en scène en 2021 Migraaaants de Matéi Visniec puis Chômage de la Cie Transquinquennal.</p><p>Elle est la directrice artistique de la Compagnie la tribu d’Oya, créée en 2022. Trafiquée est la première création de la compagnie.</p>",
+        "instagram": "https://www.instagram.com/stephorel1973/"
+    },
+    {
+        "name": "aude",
+        "dispName": "Aude Sauvée",
+        "img": "/assets/img/equipe/aude.png",
+        "description": "<p>Description de Aude Sauvée</p>",
+        "instagram": "https://www.instagram.com/stephorel1973/"
+    },
+    {
+        "name": "louis",
+        "dispName": "Louis Domagala",
+        "img": "/assets/img/equipe/louis.png",
+        "description": "<p>Description de Louis Domagala</p>",
+        "instagram": "https://www.instagram.com/stephorel1973/"
+    },
+    {
+        "name": "nicolas",
+        "dispName": "Nicolas Declerck",
+        "img": "/assets/img/equipe/nicolas.png",
+        "description":"<p>Description de Nicolas Declerck</p>",
+        "instagram": "https://www.instagram.com/stephorel1973/"
+    }
+]
