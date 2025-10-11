@@ -10,9 +10,9 @@
     <main class="flex flex-col lg:h-screen min-h-screen">
         <header class="min-h-[80px]"></header>
         <section class="flex-grow flex flex-col relative">
-            <section data-projet="background-image" class="min-w-full h-full lg:p-24 md:p-24 sm:p-8 p-4 bg-[url('assets/img/trafiquee.png')] bg-cover bg-center relative flex">
+            <section data-projet="background-image" class="min-w-full lg:p-24 md:p-24 sm:p-8 p-4 bg-[url('assets/img/trafiquee.png')] bg-cover bg-center relative flex">
                 <div class="lg:flex lg:gap-8 lg:space-y-0 space-y-5 w-full max-w-[1300px] m-auto">
-                    <div class="bg-white text-black p-8 bg-opacity-90 rounded-md lg:w-96 space-y-5 h-fit">
+                    <div class="bg-white text-black p-8 bg-opacity-90 rounded-md lg:w-[400px] lg:min-w-[400px] space-y-5 h-fit">
                         <h1 class="text-5xl" data-projet="title"></h1>
                         <h2 data-projet="subtitle"></h2>
                         <p data-projet="credits">
@@ -20,9 +20,11 @@
                         <p class="text-base" data-projet="description">
                         </p>
                     </div>
-                    <div class="flex-grow space-y-5 flex flex-col min-h-[500px]" data-projet="youtube_link">
+                    <div class="hidden lg:flex-grow space-y-5 flex flex-col min-h-[500px]" data-projet="youtube_link">
                         <iframe class="w-full h-full border-4 border-white bg-black rounded-md flex-grow" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <button class="bg-white text-black p-2 rounded-md w-fit">Contactez-nous</button>
+                        <a href="/reseaux/" class="cursor-pointer bg-white text-black p-2 rounded-md w-fit">Contactez-nous</a>
+                    </div>
+                    <div class="relative overflow-hidden max-h-[500px] bg-black rounded-md" data-projet="image">
                     </div>
                 </div>
 
@@ -42,14 +44,119 @@
             .then(projetsData => {
                 // get the first project data
                 const projet = projetsData.find(p => p.id === projetName);
+                
                 // insert the data into the html
                 document.querySelector('[data-projet="title"]').innerHTML = projet.title;
                 document.querySelector('[data-projet="background-image"]').style.backgroundImage = `url(${projet.background_image})`;
                 document.querySelector('[data-projet="subtitle"]').innerHTML = projet.subtitle;
                 document.querySelector('[data-projet="credits"]').innerHTML = projet.credit;
                 document.querySelector('[data-projet="description"]').innerHTML = projet.description;
-                document.querySelector('[data-projet="youtube_link"] iframe').src = projet.youtube_link;
+                
+                if (projet.youtube_link) {
+                    document.querySelector('[data-projet="youtube_link"] iframe').src = projet.youtube_link;
+                    document.querySelector('[data-projet="youtube_link"]').classList.remove('hidden');
+                }
+                
+                if (projet.images && projet.images.length > 0) {
+                    const carouselContainer = document.querySelector('[data-projet="image"]');
+                    
+                    // Générer le HTML du carousel
+                    carouselContainer.innerHTML = `
+                        <!-- Container des images -->
+                        <div class="carousel-container flex transition-transform duration-500 ease-in-out h-full">
+                            ${projet.images.map(imagePath => `
+                                <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center">
+                                    <img class="max-h-[500px] max-w-full object-contain" src="${imagePath}" alt="${projet.title}">
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <!-- Boutons de navigation -->
+                        <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-2 transition-colors z-10">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-2 transition-colors z-10">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Indicateurs (dots) -->
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                            ${projet.images.map((_, index) => `
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-colors" data-index="${index}"></button>
+                            `).join('')}
+                        </div>
+                    `;
+                    
+                    // Rendre le carousel visible s'il était caché
+                    carouselContainer.classList.remove('hidden');
+                    
+                    // Initialiser le carousel
+                    initCarousel(carouselContainer);
+                }
             });
+            function initCarousel(carousel) {
+                const container = carousel.querySelector('.carousel-container');
+                const prevBtn = carousel.querySelector('.carousel-prev');
+                const nextBtn = carousel.querySelector('.carousel-next');
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                const slides = container.querySelectorAll('.carousel-slide');
+                
+                let currentIndex = 0;
+                const totalSlides = slides.length;
+                
+                function updateCarousel() {
+                    const carouselWidth = carousel.offsetWidth;
+                    container.style.transform = `translateX(-${currentIndex * carouselWidth}px)`;
+                    
+                    // Mise à jour des dots
+                    dots.forEach((dot, index) => {
+                        if (index === currentIndex) {
+                            dot.classList.remove('bg-white/50');
+                            dot.classList.add('bg-white');
+                        } else {
+                            dot.classList.remove('bg-white');
+                            dot.classList.add('bg-white/50');
+                        }
+                    });
+                }
+                
+                function goToNext() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    updateCarousel();
+                }
+                
+                function goToPrev() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                }
+                
+                // Event listeners
+                nextBtn.addEventListener('click', goToNext);
+                prevBtn.addEventListener('click', goToPrev);
+                
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = parseInt(dot.dataset.index);
+                        updateCarousel();
+                    });
+                });
+                
+                // Support du clavier
+                carousel.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') goToPrev();
+                    if (e.key === 'ArrowRight') goToNext();
+                });
+                
+                // Mise à jour lors du redimensionnement de la fenêtre
+                window.addEventListener('resize', updateCarousel);
+                
+                // Initialisation
+                updateCarousel();
+            }
 
     </script>
     
