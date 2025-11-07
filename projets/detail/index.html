@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white">
-    <main class="flex flex-col lg:h-screen min-h-screen">
+    <main class="flex flex-col min-h-screen">
         <header class="min-h-[80px]"></header>
         <section class="flex-grow flex flex-col relative">
             <section data-projet="background-image" class="min-w-full lg:p-24 md:p-24 sm:p-8 p-4 bg-[url('assets/img/trafiquee.png')] bg-cover bg-center relative flex">
@@ -15,6 +15,7 @@
                     <div class="bg-white text-black p-8 bg-opacity-90 rounded-md lg:w-[400px] lg:min-w-[400px] space-y-5 h-fit">
                         <h1 class="text-5xl" data-projet="title"></h1>
                         <h2 data-projet="subtitle"></h2>
+                        <p><strong>Année de création : </strong><span data-projet="annee"></span></p>
                         <p data-projet="credits">
                         </p>
                         <p class="text-base" data-projet="description">
@@ -55,6 +56,7 @@
                 document.querySelector('[data-projet="subtitle"]').innerHTML = projet.subtitle;
                 document.querySelector('[data-projet="credits"]').innerHTML = projet.credit;
                 document.querySelector('[data-projet="description"]').innerHTML = projet.description;
+                document.querySelector('[data-projet="annee"]').innerHTML = projet.annee;
                 
                 if (projet.youtube_link) {
                     document.querySelector('[data-projet="youtube_link"] iframe').src = projet.youtube_link;

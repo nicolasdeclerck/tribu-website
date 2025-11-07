@@ -3,20 +3,23 @@
         "id": "trafiquee",
         "title": "Trafiquée",
         "annee": "2023",
+        "ordre": 2,
         "background_image": "/assets/img/trafiquee.png",
         "subtitle": "Pièce de théâtre",
-        "credit": "Mise en scène : Stéphanie Horel<br / >Autrice : Emma Haché<br />Avec : Stéphanie Horel et Aude Sauvée",
-        "description": "Trafiquée est un texte puissant sur les violences faites aux femmes à travers le prisme de la prostitution. Le texte raconte le parcours d’une femme comme tant d’autres, enlevée, vendue, prostituée, trafiquée. Il y est aussi question d’espoir et de résilience.",
+        "credit": "<strong>Mise en scène</strong> : Stéphanie Horel<br / ><strong>Texte</strong> : Emma Haché<br /><strong>Avec</strong> : Stéphanie Horel et Aude Sauvée",
+        "description": "Trafiquée est un texte puissant sur les violences faites aux femmes à travers le prisme de la prostitution. Le texte raconte le parcours d'une femme comme tant d'autres, enlevée, vendue, prostituée, trafiquée. Il y est aussi question d'espoir et de résilience.",
         "youtube_link": "https://www.youtube.com/embed/pu_PPp-4HQ8?si=EkI0h-y7m3hINCSG",
-        "press_folder_path": "/documents/dossier-de-presse.pdf"
+        "press_folder_path": "/documents/dossier-de-presse.pdf",
+        "has_detail_page": true
     },
     {
         "id": "olympe",
         "title": "Olympe",
         "annee": "2025",
+        "ordre": 1,
         "background_image": "/assets/img/olympe.png",
         "subtitle": "Pièce de théâtre",
-        "credit": "Texte : Louis Domagala<br />Avec : Lumîr Brabant, Romane Derrien, Félicie Honoré, Stéphanie Horel et Aude Sauvée",
+        "credit": "<strong>Mise en scène</strong> : Stéphanie Horel<br /><strong>Texte</strong> : Louis Domagala, Stephanie Horel, Aude Sauvée<br /><strong>Avec</strong> : Lumîr Brabant, Romane Derrien, Félicie Honoré, Stéphanie Horel et Aude Sauvée",
         "description": "<p class='mb-4'>A partir du texte: “La déclaration des droits de la femme et de la citoyenne”, 1791</p><p>Olympe de Gouges défendait le fait que “si la femme a le droit de monter à l’échafaud, elle doit aussi avoir celui de monter à la tribune”. Elle sera guillotinée pour la défense de ses idées.</p>",
         "images": [
             "/assets/img/olympe/olympe-1.png",
@@ -24,7 +27,19 @@
             "/assets/img/olympe/olympe-3.png",
             "/assets/img/olympe/olympe-4.png",
             "/assets/img/olympe/olympe-5.png"
-        ]
+        ],
+        "has_detail_page": true
+    },
+    {
+        "id": "alors-les-coeurs-se-tissent",
+        "title": "Alors les cœurs se tissent",
+        "annee": "En cours",
+        "ordre": 3,
+        "background_image": "/assets/img/alors-les-coeurs-se-tissent.png",
+        "subtitle": "Pièce de théâtre",
+        "credit": "<strong>Mise en scène : Stéphanie Horel</strong><br /><strong>Texte</strong> : Veronika Boutinova<br /><strong>Avec</strong> : Juliette Baron, Margeaux Lampley, Patrice Mendes",
+        "description": "En cours de création",
+        "status": "en_cours",
+        "has_detail_page": false
     }
-    
 ]
