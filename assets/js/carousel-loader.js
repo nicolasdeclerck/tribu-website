@@ -85,18 +85,16 @@ function initGlideCarousel() {
 
   let manualControlUsed = false;
 
-  // Initialiser Glide avec les options
   const glide = new Glide(".glide", {
     type: "carousel",
-    autoplay: 5000, // 5 secondes
-    animationDuration: 500, // 500ms comme l'original
-    hoverpause: false, // On gère manuellement l'auto-play
+    autoplay: 5000,
+    animationDuration: 500,
+    hoverpause: false,
     keyboard: true,
     perView: 1,
     gap: 0,
   });
 
-  // Détecter les clics sur les boutons de contrôle
   const arrows = glideElement.querySelectorAll("[data-glide-dir]");
   arrows.forEach((arrow) => {
     arrow.addEventListener("click", function () {
@@ -107,7 +105,6 @@ function initGlideCarousel() {
     });
   });
 
-  // Détecter l'utilisation du clavier
   document.addEventListener("keydown", function (event) {
     if (
       (event.key === "ArrowLeft" || event.key === "ArrowRight") &&
@@ -118,7 +115,6 @@ function initGlideCarousel() {
     }
   });
 
-  // Arrêter l'autoplay sur focus pour l'accessibilité
   glideElement.addEventListener("focusin", function () {
     if (!manualControlUsed && glide.settings.autoplay) {
       glide.pause();
@@ -131,7 +127,6 @@ function initGlideCarousel() {
     }
   });
 
-  // Monter Glide
   glide.mount();
 }
 
