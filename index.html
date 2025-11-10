@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La tribu d'Oya</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes slide {
-            0%, 22% { transform: translateX(0); }
-            25%, 47% { transform: translateX(-100%); }
-            50%, 72% { transform: translateX(-200%); }
-            75%, 97% { transform: translateX(-300%); }
-            100% { transform: translateX(-300%); }
-        }
-        .carousel { animation: slide 20s infinite; }
-    </style>
 </head>
 <body class="bg-black text-white opacity-0 transition-opacity duration-1000">
     <main class="flex flex-col h-screen">
@@ -23,6 +13,17 @@
             <div class="flex carousel flex-grow">
                 <!-- Les slides sont chargées dynamiquement depuis projets_data.json -->
             </div>
+            <!-- Contrôles du carousel -->
+            <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-black p-4 rounded-full transition-all duration-200 z-10" aria-label="Slide précédente">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-black p-4 rounded-full transition-all duration-200 z-10" aria-label="Slide suivante">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
         </section>
     </main>
     <footer class="min-h-[200px]"></footer>
