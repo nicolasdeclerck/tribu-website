@@ -2,13 +2,16 @@
     {
         "name": "stephanie",
         "dispName": "Stéphanie Horel",
+        "role": "Metteuse en scène / Comédienne",
         "img": "/assets/img/equipe/stephanie.png",
         "description": "<p>Née en 1973, Stéphanie Horel est metteuse en scène et comédienne.</p><p>Comédienne depuis 20 ans, Stéphanie a travaillé sous la direction de Violaine Debarge, Daniela Piemontesi, Simon Capelle et Antoine Lemaire.</p><p>Son répertoire va du théâtre classique au répertoire contemporain ; de <span class='italic'>Lorenzaccio</span> à <span class='italic'>Surtout ne regardez pas mon jardin</span> de Stéphane Guérin.</p><p>Elle anime également des ateliers de théâtre. D’abord assistante mise en scène, elle met en scène en 2021 Migraaaants de Matéi Visniec puis Chômage de la Cie Transquinquennal.</p><p>Elle est la directrice artistique de la Compagnie la tribu d’Oya, créée en 2022. Trafiquée est la première création de la compagnie.</p>",
-        "instagram": "https://www.instagram.com/stephorel1973/"
+        "instagram": "https://www.instagram.com/stephorel1973/",
+        "portfolio": "/documents/portfolio-stephanie-horel.pdf"
     },
     {
         "name": "aude",
         "dispName": "Aude Sauvée",
+        "role": "Comédienne",
         "img": "/assets/img/equipe/aude.png",
         "instagram": "https://www.instagram.com/audesv/",
         "description": "<p>Aude s’engage dans sa formation à travers plusieurs projets de théâtre.</p><p>Elle intègre en 2021, la troupe Melting pÖt (maelström théâtre), où elle y fait la rencontre de Stéphanie Horel qui met en scène Migraaaants de Matéi Visniec, puis Gloriette (d’après ‘Chômage’ du collectif Transquinquenal).</p> <p>Aude travaille en stage avec Eram Sobhani et Stéphane Auvray-Nauroy. Elle se forme aussi auprès du metteur en scène argentin Guillermo Cacace en 2023. S’en suivra la création de la pièce Trafiquée, mes par Stéphanie Horel, avec qui elle partage la scène.</p> <p>Elle sera ensuite sous la direction de Violaine Debarge qui soutient un travail sur la BeAT génération.</p>" 
@@ -17,6 +20,7 @@
     {
         "name": "louis",
         "dispName": "Louis Domagala",
+        "role": "Producteur",
         "img": "/assets/img/equipe/louis.png",
         "instagram": "https://www.instagram.com/loudodo/",
         "description": "<p>Louis est président de l’association Cultur’All depuis plus de 10 ans dont l’objet est la valorisation et la promotion des cultures populaires. </p><p>Il écrit et produit des métrages audiovisuels (documentaires, clips, fictions) ainsi que de l'événementiel musical. <p>Comédien amateur, il s’intéresse à la production théâtrale depuis 2022 et propose à Stéphanie Horel de collaborer sur ses projets.</p><p>Il accompagne la tribu d’Oya depuis sa création pour faciliter sa production. Il crée également l’ensemble des parties audiovisuelles du spectacle Trafiquée  (teasers, captations, mapping).</p>"
@@ -24,6 +28,7 @@
     {
         "name": "nicolas",
         "dispName": "Nicolas Declerck",
+        "role": "Compositeur",
         "img": "/assets/img/equipe/nicolas.png",
         "description":"<p>Nicolas commence le piano à l’âge de 4 ans avant d’approfondir sa formation musicale au Conservatoire de Roubaix.</p> Au fil du temps et des expériences variées (groupe de rock, orchestre…), sa vocation se précise: Nicolas veut composer pour le spectacle vivant et pour l’image.</p><p>En 2022, ce désir prend un tournant fort avec la création de la musique de la pièce Trafiquée, en collaboration avec Stéphanie Horel, metteuse en scène au sein de la compagnie la tribu d’Oya.</p><p>Nicolas approfondit ses connaissances au Conservatoire de Tourcoing et poursuit en parallèle ses projets de création, seul ou en collaboration, avec le désir constant d'innover en explorant de nouvelles textures et en permettant la rencontre entre musique et dramaturgie pour magnifier les récits artistiques. </p>",
         "instagram": "https://www.instagram.com/ndeclerck/"

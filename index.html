@@ -5,79 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La tribu d'Oya</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes slide {
-            0%, 22% { transform: translateX(0); }
-            25%, 47% { transform: translateX(-100%); }
-            50%, 72% { transform: translateX(-200%); }
-            75%, 97% { transform: translateX(-300%); }
-            100% { transform: translateX(-300%); }
-        }
-        .carousel { animation: slide 20s infinite; }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.theme.min.css">
 </head>
 <body class="bg-black text-white opacity-0 transition-opacity duration-1000">
     <main class="flex flex-col h-screen">
         <header class="min-h-[80px]"></header>
         <section class="flex-grow flex flex-col overflow-hidden relative">
-            <div class="flex carousel flex-grow">
-                <div class="min-w-full h-full bg-[url('assets/img/trafiquee.png')] bg-cover bg-right relative p-4">
-                    <div class="my-16 md:absolute md:right-28 md:top-28 md:w-96 gap-4 bg-white bg-opacity-80 text-right p-4 rounded-md text-black flex flex-col items-end">
-                        <h2 class="text-5xl">Trafiquée</h2>
-                        <p class="text-lg">Pièce de théâtre</p>
-                        <p class="text-sm">
-                            Autrice : Emma Haché<br/>
-                            Avec : Stéphanie Horel et Aude Sauvée
-                        </p>
-                        <div class="bg-black p-2 rounded-md text-white w-fit">
-                            <a href="/projets/detail/?name=trafiquee">En savoir plus</a>
-                        </div>
-                    </div>
+            <div class="glide flex-grow">
+                <div class="glide__track h-full" data-glide-el="track">
+                    <ul class="glide__slides h-full">
+                        <!-- Les slides sont chargées dynamiquement depuis projets_data.json -->
+                    </ul>
                 </div>
-                <div class="min-w-full h-full bg-[url('assets/img/olympe.png')] bg-cover bg-center relative p-4">
-                    <div class="my-16 md:absolute md:right-28 md:top-28 md:w-96 gap-4 bg-white bg-opacity-80 text-right p-4 rounded-md text-black flex flex-col items-end">
-                        <h2 class="text-5xl">Olympe</h2>
-                        <p class="text-lg">Pièce de théâtre</p>
-                        <p class="text-sm">
-                            Texte : Louis Domagala<br />
-                            Avec : Lumîr Brabant, Romane Derrien, Félicie Honoré, Stéphanie Horel et Aude Sauvée
-                        </p>
-                        <div class="bg-black p-2 rounded-md text-white w-fit">
-                            <a href="/projets/detail/?name=olympe">En savoir plus</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="min-w-full h-full bg-[url('assets/img/alors-les-coeurs-se-tissent.png')] bg-cover bg-center relative p-4">
-                    <div class="my-16 md:absolute md:right-28 md:top-28 md:w-96 gap-4 bg-white bg-opacity-80 text-right p-4 rounded-md text-black flex flex-col items-end">
-                        <h2 class="text-5xl">Alors les cœurs se tissent</h2>
-                        <p class="text-lg">Pièce de théâtre</p>
-                        <p class="text-sm">
-                            Autrice : Veronika Boutinova<br />
-                            Avec : Stéphanie Horel
-                        </p>
-                        <div class="bg-slate-200 p-2 rounded-md text-slate-600 w-fit">
-                            En cours de création
-                        </div>
-                    </div>
-                </div>
-                <div class="min-w-full h-full bg-[url('assets/img/trafiquee.png')] bg-cover bg-right relative p-4">
-                    <div class="my-16 md:absolute md:right-28 md:top-28 md:w-96 gap-4 bg-white bg-opacity-80 text-right p-4 rounded-md text-black flex flex-col items-end">
-                        <h2 class="text-5xl">Trafiquée</h2>
-                        <p class="text-lg">Pièce de théâtre</p>
-                        <p class="text-sm">
-                            Autrice : Emma Haché<br/>
-                            Avec : Stéphanie Horel et Aude Sauvée
-                        </p>
-                        <div class="bg-black p-2 rounded-md text-white w-fit">
-                            <a href="/projets/detail/?name=trafiquee">En savoir plus</a>
-                        </div>
-                    </div>
+                <!-- Contrôles du carousel -->
+                <div class="glide__arrows hidden md:block" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-black p-4 rounded-full transition-all duration-200 z-10" data-glide-dir="<" aria-label="Slide précédente">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button class="glide__arrow glide__arrow--right absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-black p-4 rounded-full transition-all duration-200 z-10" data-glide-dir=">" aria-label="Slide suivante">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>
     </main>
     <footer class="min-h-[200px]"></footer>
     <script src="/assets/js/partials-loader.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/glide.min.js"></script>
+    <script src="/assets/js/carousel-loader.js"></script>
+
 </body>
 </html>
