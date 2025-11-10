@@ -21,13 +21,11 @@ async function loadCarousel() {
       return;
     }
 
-    // Créer toutes les slides
-    sortedProjects.forEach(project => {
+    sortedProjects.forEach((project) => {
       const slide = createSlide(project);
       slidesContainer.appendChild(slide);
     });
 
-    // Initialiser Glide après avoir chargé les slides
     initGlideCarousel();
   } catch (error) {
     console.error("Erreur lors du chargement des projets:", error);
@@ -38,11 +36,6 @@ function createSlide(project) {
   const slide = document.createElement("li");
   slide.className = "glide__slide h-full bg-cover bg-center relative p-4";
   slide.style.backgroundImage = `url('${project.background_image}')`;
-
-  if (project.id === "trafiquee") {
-    slide.classList.remove("bg-center");
-    slide.classList.add("bg-right");
-  }
 
   const content = document.createElement("div");
   content.className =
@@ -83,7 +76,7 @@ function createSlide(project) {
 }
 
 function initGlideCarousel() {
-  const glideElement = document.querySelector('.glide');
+  const glideElement = document.querySelector(".glide");
 
   if (!glideElement) {
     console.error("Élément Glide non trouvé");
@@ -93,20 +86,20 @@ function initGlideCarousel() {
   let manualControlUsed = false;
 
   // Initialiser Glide avec les options
-  const glide = new Glide('.glide', {
-    type: 'carousel',
+  const glide = new Glide(".glide", {
+    type: "carousel",
     autoplay: 5000, // 5 secondes
     animationDuration: 500, // 500ms comme l'original
     hoverpause: false, // On gère manuellement l'auto-play
     keyboard: true,
     perView: 1,
-    gap: 0
+    gap: 0,
   });
 
   // Détecter les clics sur les boutons de contrôle
-  const arrows = glideElement.querySelectorAll('[data-glide-dir]');
-  arrows.forEach(arrow => {
-    arrow.addEventListener('click', function() {
+  const arrows = glideElement.querySelectorAll("[data-glide-dir]");
+  arrows.forEach((arrow) => {
+    arrow.addEventListener("click", function () {
       if (!manualControlUsed) {
         manualControlUsed = true;
         glide.update({ autoplay: false });
@@ -115,21 +108,24 @@ function initGlideCarousel() {
   });
 
   // Détecter l'utilisation du clavier
-  document.addEventListener('keydown', function(event) {
-    if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !manualControlUsed) {
+  document.addEventListener("keydown", function (event) {
+    if (
+      (event.key === "ArrowLeft" || event.key === "ArrowRight") &&
+      !manualControlUsed
+    ) {
       manualControlUsed = true;
       glide.update({ autoplay: false });
     }
   });
 
   // Arrêter l'autoplay sur focus pour l'accessibilité
-  glideElement.addEventListener('focusin', function() {
+  glideElement.addEventListener("focusin", function () {
     if (!manualControlUsed && glide.settings.autoplay) {
       glide.pause();
     }
   });
 
-  glideElement.addEventListener('focusout', function() {
+  glideElement.addEventListener("focusout", function () {
     if (!manualControlUsed && glide.settings.autoplay) {
       glide.play();
     }
