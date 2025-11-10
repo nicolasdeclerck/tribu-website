@@ -37,7 +37,7 @@
         "ordre": 3,
         "background_image": "/assets/img/alors-les-coeurs-se-tissent.png",
         "subtitle": "Pièce de théâtre",
-        "credit": "<strong>Mise en scène : Stéphanie Horel</strong><br /><strong>Texte</strong> : Veronika Boutinova<br /><strong>Avec</strong> : Juliette Baron, Margeaux Lampley, Patrice Mendes",
+        "credit": "<strong>Mise en scène</strong> : Stéphanie Horel<br /><strong>Texte</strong> : Veronika Boutinova<br /><strong>Avec</strong> : Juliette Baron, Margeaux Lampley, Patrice Mendes",
         "description": "En cours de création",
         "status": "en_cours",
         "has_detail_page": false
