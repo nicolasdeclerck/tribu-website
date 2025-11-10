@@ -3,14 +3,14 @@ async function loadCarousel() {
     const response = await fetch("/projets/projets_data.json");
     const projects = await response.json();
 
-    const carouselContainer = document.querySelector(".carousel");
+    const slidesContainer = document.querySelector(".glide__slides");
 
-    if (!carouselContainer) {
-      console.error("Conteneur du carrousel non trouvé");
+    if (!slidesContainer) {
+      console.error("Conteneur des slides non trouvé");
       return;
     }
 
-    carouselContainer.innerHTML = "";
+    slidesContainer.innerHTML = "";
 
     const sortedProjects = projects.sort(
       (a, b) => (a.ordre || 0) - (b.ordre || 0)
@@ -21,18 +21,22 @@ async function loadCarousel() {
       return;
     }
 
-    const firstSlide = createSlide(sortedProjects[0]);
-    carouselContainer.appendChild(firstSlide);
+    // Créer toutes les slides
+    sortedProjects.forEach(project => {
+      const slide = createSlide(project);
+      slidesContainer.appendChild(slide);
+    });
 
-    initCarousel(carouselContainer, sortedProjects);
+    // Initialiser Glide après avoir chargé les slides
+    initGlideCarousel();
   } catch (error) {
     console.error("Erreur lors du chargement des projets:", error);
   }
 }
 
 function createSlide(project) {
-  const slide = document.createElement("div");
-  slide.className = "min-w-full h-full bg-cover bg-center relative p-4";
+  const slide = document.createElement("li");
+  slide.className = "glide__slide h-full bg-cover bg-center relative p-4";
   slide.style.backgroundImage = `url('${project.background_image}')`;
 
   if (project.id === "trafiquee") {
@@ -78,165 +82,61 @@ function createSlide(project) {
   return slide;
 }
 
-function initCarousel(carouselContainer, sortedProjects) {
-  if (sortedProjects.length === 0) return;
+function initGlideCarousel() {
+  const glideElement = document.querySelector('.glide');
 
-  let intervalId = null;
-  const slideInterval = 5000;
-  const transitionDuration = 500;
+  if (!glideElement) {
+    console.error("Élément Glide non trouvé");
+    return;
+  }
 
-  let currentProjectIndex = 0;
-  let isTransitioning = false;
-  let manualControlUsed = false; // Flag pour tracker l'utilisation des contrôles manuels
+  let manualControlUsed = false;
 
-  carouselContainer.style.position = "relative";
-  carouselContainer.style.transform = "translateX(0)";
-  carouselContainer.style.overflow = "hidden";
+  // Initialiser Glide avec les options
+  const glide = new Glide('.glide', {
+    type: 'carousel',
+    autoplay: 5000, // 5 secondes
+    animationDuration: 500, // 500ms comme l'original
+    hoverpause: false, // On gère manuellement l'auto-play
+    keyboard: true,
+    perView: 1,
+    gap: 0
+  });
 
-  function nextSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    const nextProjectIndex = (currentProjectIndex + 1) % sortedProjects.length;
-    const nextProject = sortedProjects[nextProjectIndex];
-
-    const nextSlideElement = createSlide(nextProject);
-    carouselContainer.appendChild(nextSlideElement);
-
-    nextSlideElement.style.position = "absolute";
-    nextSlideElement.style.top = "0";
-    nextSlideElement.style.left = "100%";
-    nextSlideElement.style.width = "100%";
-    nextSlideElement.style.height = "100%";
-    nextSlideElement.style.transition = `left ${transitionDuration}ms ease-in-out`;
-
-    const currentSlideElement = carouselContainer.children[0];
-    currentSlideElement.style.position = "absolute";
-    currentSlideElement.style.top = "0";
-    currentSlideElement.style.left = "0";
-    currentSlideElement.style.width = "100%";
-    currentSlideElement.style.height = "100%";
-    currentSlideElement.style.transition = `left ${transitionDuration}ms ease-in-out`;
-
-    nextSlideElement.offsetHeight;
-
-    requestAnimationFrame(() => {
-      currentSlideElement.style.left = "-100%";
-      nextSlideElement.style.left = "0";
-    });
-
-    setTimeout(() => {
-      if (currentSlideElement.parentNode === carouselContainer) {
-        carouselContainer.removeChild(currentSlideElement);
+  // Détecter les clics sur les boutons de contrôle
+  const arrows = glideElement.querySelectorAll('[data-glide-dir]');
+  arrows.forEach(arrow => {
+    arrow.addEventListener('click', function() {
+      if (!manualControlUsed) {
+        manualControlUsed = true;
+        glide.update({ autoplay: false });
       }
-
-      nextSlideElement.style.position = "relative";
-      nextSlideElement.style.left = "0";
-      nextSlideElement.style.width = "";
-      nextSlideElement.style.height = "";
-      nextSlideElement.style.transition = "";
-
-      currentProjectIndex = nextProjectIndex;
-      isTransitioning = false;
-    }, transitionDuration);
-  }
-
-  function prevSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    const prevProjectIndex = (currentProjectIndex - 1 + sortedProjects.length) % sortedProjects.length;
-    const prevProject = sortedProjects[prevProjectIndex];
-
-    const prevSlideElement = createSlide(prevProject);
-    carouselContainer.appendChild(prevSlideElement);
-
-    prevSlideElement.style.position = "absolute";
-    prevSlideElement.style.top = "0";
-    prevSlideElement.style.left = "-100%";
-    prevSlideElement.style.width = "100%";
-    prevSlideElement.style.height = "100%";
-    prevSlideElement.style.transition = `left ${transitionDuration}ms ease-in-out`;
-
-    const currentSlideElement = carouselContainer.children[0];
-    currentSlideElement.style.position = "absolute";
-    currentSlideElement.style.top = "0";
-    currentSlideElement.style.left = "0";
-    currentSlideElement.style.width = "100%";
-    currentSlideElement.style.height = "100%";
-    currentSlideElement.style.transition = `left ${transitionDuration}ms ease-in-out`;
-
-    prevSlideElement.offsetHeight;
-
-    requestAnimationFrame(() => {
-      currentSlideElement.style.left = "100%";
-      prevSlideElement.style.left = "0";
     });
+  });
 
-    setTimeout(() => {
-      if (currentSlideElement.parentNode === carouselContainer) {
-        carouselContainer.removeChild(currentSlideElement);
-      }
-
-      prevSlideElement.style.position = "relative";
-      prevSlideElement.style.left = "0";
-      prevSlideElement.style.width = "";
-      prevSlideElement.style.height = "";
-      prevSlideElement.style.transition = "";
-
-      currentProjectIndex = prevProjectIndex;
-      isTransitioning = false;
-    }, transitionDuration);
-  }
-
-  function startAutoPlay() {
-    if (intervalId || manualControlUsed) return; // Ne pas redémarrer si contrôles manuels utilisés
-    intervalId = setInterval(nextSlide, slideInterval);
-  }
-
-  function stopAutoPlay() {
-    if (intervalId) {
-      clearInterval(intervalId);
-      intervalId = null;
-    }
-  }
-
-  function handleManualControl(direction) {
-    // Arrêter définitivement l'autoplay lors de la première interaction manuelle
-    if (!manualControlUsed) {
+  // Détecter l'utilisation du clavier
+  document.addEventListener('keydown', function(event) {
+    if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !manualControlUsed) {
       manualControlUsed = true;
-      stopAutoPlay();
-    }
-
-    if (direction === "next") {
-      nextSlide();
-    } else if (direction === "prev") {
-      prevSlide();
-    }
-  }
-
-  // Pause sur focus pour l'accessibilité
-  carouselContainer.addEventListener("focusin", stopAutoPlay);
-  carouselContainer.addEventListener("focusout", () => {
-    if (!manualControlUsed) {
-      startAutoPlay();
+      glide.update({ autoplay: false });
     }
   });
 
-  // Connecter les boutons de contrôle
-  const prevButton = document.getElementById("carousel-prev");
-  const nextButton = document.getElementById("carousel-next");
+  // Arrêter l'autoplay sur focus pour l'accessibilité
+  glideElement.addEventListener('focusin', function() {
+    if (!manualControlUsed && glide.settings.autoplay) {
+      glide.pause();
+    }
+  });
 
-  if (prevButton) {
-    prevButton.addEventListener("click", () => handleManualControl("prev"));
-  }
+  glideElement.addEventListener('focusout', function() {
+    if (!manualControlUsed && glide.settings.autoplay) {
+      glide.play();
+    }
+  });
 
-  if (nextButton) {
-    nextButton.addEventListener("click", () => handleManualControl("next"));
-  }
-
-  // Démarrer l'auto-play
-  startAutoPlay();
+  // Monter Glide
+  glide.mount();
 }
 
 document.addEventListener("DOMContentLoaded", loadCarousel);
