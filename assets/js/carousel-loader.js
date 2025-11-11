@@ -88,7 +88,7 @@ function initGlideCarousel() {
   const glide = new Glide(".glide", {
     type: "carousel",
     autoplay: 5000,
-    animationDuration: 500,
+    animationDuration: 750,
     hoverpause: false,
     keyboard: true,
     perView: 1,
