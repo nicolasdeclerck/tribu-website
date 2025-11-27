@@ -1,0 +1,6 @@
+# robots.txt pour La tribu d'Oya
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://latribudoya.fr/sitemap.xml
