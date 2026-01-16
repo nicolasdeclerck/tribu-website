@@ -1,0 +1,31 @@
+[
+  {
+    "id": "choeur-de-femmes",
+    "title": "Chœur de femmes",
+    "type": "Stage de théâtre",
+    "credit": "<strong>Animatrice :</strong> Stéphanie Horel",
+    "subtitle": "Une journée pour faire chœur",
+    "ordre": 1,
+    "background_image": "/assets/img/stage-choeur-de-femmes.png",
+    "description_courte": "La puissance du collectif au féminin",
+    "intention": "Cet atelier se veut un espace de recherche autour de la dynamique de groupe, des énergies et des respirations collectives. Un lieu d'exploration de la puissance féminine et du chœur de femmes. Éprouver la force de l'unisson et la beauté de l'individu au sein du groupe, conscientiser ce qui nous lie, ce qui nous agit quand nous sommes ensemble.",
+    "theme": "Passer du JE au NOUS : construire un chœur de femmes, trouver l'unisson, explorer les dynamiques de groupe, les énergies collectives. Se relier à l'autre, au groupe, par le souffle, le regard, le mouvement, la voix.",
+    "objectifs": [
+      "Explorer le chœur de femmes comme outil de mise en scène",
+      "Conscientiser les dynamiques de groupe",
+      "Travailler l'écoute collective et l'unisson",
+      "Découvrir la puissance du collectif au féminin"
+    ],
+    "axes_travail": [
+      "Travail corporel et vocal",
+      "Exercices d'écoute et de synchronisation",
+      "Exploration des dynamiques de groupe",
+      "Mise en pratique à travers des improvisations collectives"
+    ],
+    "note": "Ce stage ne nécessite pas de niveau spécifique en théâtre. Il s'adresse à toutes les femmes curieuses d'explorer la dynamique de groupe et la puissance du collectif. Prévoir une tenue confortable.",
+    "prochaines_dates": [
+      { "date": "07/02/2026", "horaires": "10h - 17h", "lieu": "Bazaar St So, Lille" }
+    ],
+    "has_detail_page": true
+  }
+]
