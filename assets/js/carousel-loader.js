@@ -1,7 +1,12 @@
 async function loadCarousel() {
   try {
-    const response = await fetch("/projets/projets_data.json");
-    const projects = await response.json();
+    const [projetsResponse, stagesResponse] = await Promise.all([
+      fetch("/projets/projets_data.json"),
+      fetch("/stages/stages_data.json")
+    ]);
+
+    const projects = await projetsResponse.json();
+    const stages = await stagesResponse.json();
 
     const slidesContainer = document.querySelector(".glide__slides");
 
@@ -12,14 +17,20 @@ async function loadCarousel() {
 
     slidesContainer.innerHTML = "";
 
-    const sortedProjects = projects.sort(
+    // Ajouter les stages en premier
+    const sortedStages = stages.sort(
       (a, b) => (a.ordre || 0) - (b.ordre || 0)
     );
 
-    if (sortedProjects.length === 0) {
-      console.error("Aucun projet trouvé");
-      return;
-    }
+    sortedStages.forEach((stage) => {
+      const slide = createStageSlide(stage);
+      slidesContainer.appendChild(slide);
+    });
+
+    // Puis les projets
+    const sortedProjects = projects.sort(
+      (a, b) => (a.ordre || 0) - (b.ordre || 0)
+    );
 
     sortedProjects.forEach((project) => {
       const slide = createSlide(project);
@@ -28,7 +39,7 @@ async function loadCarousel() {
 
     initGlideCarousel();
   } catch (error) {
-    console.error("Erreur lors du chargement des projets:", error);
+    console.error("Erreur lors du chargement du carousel:", error);
   }
 }
 
@@ -70,6 +81,43 @@ function createSlide(project) {
   }
 
   content.appendChild(button);
+  slide.appendChild(content);
+
+  return slide;
+}
+
+function createStageSlide(stage) {
+  const slide = document.createElement("li");
+  slide.className = "glide__slide h-full bg-cover bg-center relative p-4";
+  slide.style.backgroundImage = `url('${stage.background_image}')`;
+
+  const content = document.createElement("div");
+  content.className =
+    "my-16 md:absolute md:right-28 md:top-28 md:w-96 gap-4 bg-white bg-opacity-80 text-right p-4 rounded-md text-black flex flex-col items-end";
+
+  const title = document.createElement("h2");
+  title.className = "text-5xl";
+  title.textContent = stage.title;
+  content.appendChild(title);
+
+  const type = document.createElement("p");
+  type.className = "text-lg";
+  type.textContent = stage.type;
+  content.appendChild(type);
+
+  const credits = document.createElement("p");
+  credits.className = "text-sm";
+  credits.innerHTML = stage.credit;
+  content.appendChild(credits);
+
+  const button = document.createElement("div");
+  button.className = "bg-black p-2 rounded-md text-white w-fit";
+  const link = document.createElement("a");
+  link.href = `/stages/detail/?name=${stage.id}`;
+  link.textContent = "En savoir plus";
+  button.appendChild(link);
+  content.appendChild(button);
+
   slide.appendChild(content);
 
   return slide;

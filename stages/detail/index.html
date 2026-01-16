@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du stage - La tribu d'Oya</title>
+    <meta name="description" content="Découvrez en détail nos stages de théâtre. Compagnie de théâtre féministe La tribu d'Oya.">
+    <meta name="keywords" content="stage détails, stage théâtre, atelier théâtre, chœur de femmes">
+    <link rel="canonical" href="https://latribudoya.fr/stages/detail/">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://latribudoya.fr/stages/detail/">
+    <meta property="og:title" content="Détail du stage - La tribu d'Oya">
+    <meta property="og:description" content="Découvrez en détail nos stages de théâtre.">
+    <meta property="og:image" content="https://latribudoya.fr/assets/img/stage-choeur-de-femmes.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://latribudoya.fr/stages/detail/">
+    <meta property="twitter:title" content="Détail du stage - La tribu d'Oya">
+    <meta property="twitter:description" content="Découvrez en détail nos stages de théâtre.">
+    <meta property="twitter:image" content="https://latribudoya.fr/assets/img/stage-choeur-de-femmes.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+    <main class="flex flex-col min-h-screen">
+        <header class="min-h-[80px]"></header>
+        <section class="flex-grow flex flex-col relative">
+            <section data-stage="background-image" class="flex-grow min-w-full lg:p-24 md:p-16 p-4 bg-cover bg-center relative flex">
+                <div class="flex flex-col lg:flex-row gap-8 w-full max-w-[1300px] m-auto">
+                    <!-- Colonne gauche : Description (75%) -->
+                    <div class="lg:w-3/4 bg-white text-black p-8 bg-opacity-90 rounded-md space-y-6">
+                        <div>
+                            <h1 class="text-4xl lg:text-5xl font-semibold" data-stage="title"></h1>
+                            <h2 class="text-xl mt-2 text-gray-600" data-stage="subtitle"></h2>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Intention</h3>
+                            <p data-stage="intention" class="text-gray-700"></p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Thème</h3>
+                            <p data-stage="theme" class="text-gray-700"></p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Objectifs</h3>
+                            <ul data-stage="objectifs" class="list-disc list-inside text-gray-700 space-y-1"></ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Axes de travail</h3>
+                            <ul data-stage="axes_travail" class="list-disc list-inside text-gray-700 space-y-1"></ul>
+                        </div>
+
+                        <div class="bg-gray-100 p-4 rounded-md">
+                            <p data-stage="note" class="text-gray-600 italic"></p>
+                        </div>
+                    </div>
+
+                    <!-- Colonne droite : Dates (25%) -->
+                    <div class="lg:w-1/4">
+                        <div class="bg-white text-black p-6 bg-opacity-90 rounded-md sticky top-8">
+                            <h3 class="text-xl font-semibold mb-4">Prochaines dates</h3>
+                            <div data-stage="prochaines_dates" class="space-y-4"></div>
+                            <div class="mt-6">
+                                <a href="/reseaux/" class="block text-center bg-black text-white p-3 rounded-md hover:bg-gray-800 transition-colors">Contactez-nous</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer class="min-h-[200px]"></footer>
+    <script src="/assets/js/partials-loader.js"></script>
+    <script>
+        // Récupérer le nom du stage depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const stageName = urlParams.get('name') || 'choeur-de-femmes';
+
+        // Charger les données du stage
+        fetch('/stages/stages_data.json')
+            .then(response => response.json())
+            .then(stagesData => {
+                const stage = stagesData.find(s => s.id === stageName);
+
+                if (!stage) {
+                    console.error('Stage non trouvé');
+                    return;
+                }
+
+                // Remplir les données
+                document.querySelector('[data-stage="background-image"]').style.backgroundImage = `url(${stage.background_image})`;
+                document.querySelector('[data-stage="title"]').innerHTML = stage.title;
+                document.querySelector('[data-stage="subtitle"]').innerHTML = stage.subtitle;
+                document.querySelector('[data-stage="intention"]').innerHTML = stage.intention;
+                document.querySelector('[data-stage="theme"]').innerHTML = stage.theme;
+
+                // Objectifs
+                const objectifsContainer = document.querySelector('[data-stage="objectifs"]');
+                stage.objectifs.forEach(obj => {
+                    objectifsContainer.innerHTML += `<li>${obj}</li>`;
+                });
+
+                // Axes de travail
+                const axesContainer = document.querySelector('[data-stage="axes_travail"]');
+                stage.axes_travail.forEach(axe => {
+                    axesContainer.innerHTML += `<li>${axe}</li>`;
+                });
+
+                // Note
+                document.querySelector('[data-stage="note"]').innerHTML = stage.note;
+
+                // Prochaines dates
+                const datesContainer = document.querySelector('[data-stage="prochaines_dates"]');
+                if (stage.prochaines_dates && stage.prochaines_dates.length > 0) {
+                    stage.prochaines_dates.forEach(dateInfo => {
+                        datesContainer.innerHTML += `
+                            <div class="border-l-4 border-black pl-4">
+                                <p class="font-semibold text-lg">${dateInfo.date}</p>
+                                <p class="text-gray-600">${dateInfo.horaires}</p>
+                                <p class="text-gray-600">${dateInfo.lieu}</p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    datesContainer.innerHTML = '<p class="text-gray-600">Aucune date prévue pour le moment.</p>';
+                }
+
+                // Mettre à jour le titre de la page
+                document.title = `${stage.title} - La tribu d'Oya`;
+            });
+    </script>
+</body>
+</html>
