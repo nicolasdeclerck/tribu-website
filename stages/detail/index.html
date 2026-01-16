@@ -74,9 +74,6 @@
                         <div class="bg-white text-black p-6 bg-opacity-90 rounded-md sticky top-8">
                             <h3 class="text-xl font-semibold mb-4">Prochaines dates</h3>
                             <div data-stage="prochaines_dates" class="space-y-4"></div>
-                            <div class="mt-6">
-                                <a href="/reseaux/" class="block text-center bg-black text-white p-3 rounded-md hover:bg-gray-800 transition-colors">Contactez-nous</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,11 +124,15 @@
                 const datesContainer = document.querySelector('[data-stage="prochaines_dates"]');
                 if (stage.prochaines_dates && stage.prochaines_dates.length > 0) {
                     stage.prochaines_dates.forEach(dateInfo => {
+                        const billetterieHtml = dateInfo.billetterie
+                            ? `<a href="${dateInfo.billetterie}" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 bg-black text-white text-sm px-3 py-1 rounded-md hover:bg-gray-800 transition-colors">Réserver</a>`
+                            : '';
                         datesContainer.innerHTML += `
                             <div class="border-l-4 border-black pl-4">
                                 <p class="font-semibold text-lg">${dateInfo.date}</p>
                                 <p class="text-gray-600">${dateInfo.horaires}</p>
                                 <p class="text-gray-600">${dateInfo.lieu}</p>
+                                ${billetterieHtml}
                             </div>
                         `;
                     });
