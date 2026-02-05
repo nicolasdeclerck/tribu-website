@@ -21,10 +21,10 @@ function createStageCard(stage) {
 
   return `
         <div class="bg-white bg-[url('${stage.background_image}')] bg-cover bg-center rounded-md h-[232px] w-full lg:w-[380px]">
-            <div class="lg:p-8 p-4 bg-white bg-opacity-70 text-black space-y-2 rounded-md text-right h-full flex flex-col justify-end items-end">
+            <div class="lg:p-8 p-4 bg-white bg-opacity-40 text-black space-y-2 rounded-md text-right h-full flex flex-col justify-end items-end">
                 <h2 class="text-3xl font-semibold">${stage.title}</h2>
                 <h3>${stage.subtitle}</h3>
-                <p>${stage.description_courte}</p>
+                <p>${stage.credit}</p>
                 ${buttonHtml}
             </div>
         </div>
